@@ -16,6 +16,7 @@ test("The Dispatch Component should add", () => {
   }
 
   let result = CountUp(initState);
+  console.log(initState);
 
   expect(result).toBe(initState.count);
 });

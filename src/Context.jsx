@@ -9,7 +9,7 @@ const Store = React.createContext(initialState);
 function Reducer(state, action) {
   switch (action.type) {
     case "add": {
-      state.count = CountUp(state);
+      CountUp(state);
       return { ...state };
     }
     default:
@@ -18,7 +18,9 @@ function Reducer(state, action) {
 }
 
 function CountUp(state) {
-  return state.count + 1;
+  let newCount = state.count + 1;
+  state.count = newCount;
+  return newCount;
 }
 
 const Provider = ({ children }) => {
