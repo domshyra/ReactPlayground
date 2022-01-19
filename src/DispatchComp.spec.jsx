@@ -4,11 +4,6 @@ beforeAll(() => {
   console.log("Now Testing The Dispatch Component");
 });
 
-test.skip("The Dispatch Component", () => {
-  expect(undefined).toBe();
-});
-
-
 
 test("The Dispatch Component should add", () => {
   const initState = {
