@@ -3,3 +3,4 @@ module.exports = {
       "^.+\\.(js|jsx)$": "babel-jest",
     }
   };
+  
