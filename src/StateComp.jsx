@@ -4,19 +4,18 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
 
-const MathComp = (props) => {
+const StateComp = (props) => {
   const [count, setCount] = useState(0);
 
-
-    const handleChange = () => {
-        const newCount = count + 1;
-        setCount(newCount);
-    }
+  const handleChange = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+  };
 
   return (
     <Box bgcolor="black" px={2}>
       <Typography variant="h4" component="div" gutterBottom>
-        Math Component
+        State Component
       </Typography>
       <Box>
         <Button
@@ -29,13 +28,13 @@ const MathComp = (props) => {
         </Button>
       </Box>
       <Typography variant="h6" component="div">
-        Count is {count}
+        State count is {count}
       </Typography>
     </Box>
   );
 };
-MathComp.propTypes = {
+StateComp.propTypes = {
   title: PropTypes.string,
 };
 
-export default MathComp;
+export default StateComp;
