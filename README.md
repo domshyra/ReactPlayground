@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+You will need to instal jest `gloablly` in order to test this application. 
+
 ## Available Scripts
 
 In the project directory, you can run:
