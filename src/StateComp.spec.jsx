@@ -27,10 +27,20 @@ test("App loads with initial state of 0", () => {
 test("App state gets incremented when user clicks add button", () => {
   render(<StateComp />);
   const countText = screen.getByTestId("countText");
-  expect(countText.textContent).toBe("State count is 0");
 
   fireEvent.click(screen.getByTestId("addButton"));
   expect(countText.textContent).toBe("State count is 1");
+
+});
+
+test("App state gets incremented when user clicks add button multiple times", () => {
+  render(<StateComp />);
+  const countText = screen.getByTestId("countText");
+
+  for (let index = 1; index < 10; index++) {
+    fireEvent.click(screen.getByTestId("addButton"));
+    expect(countText.textContent).toBe(`State count is ${index}`);
+  }
 
 });
 
