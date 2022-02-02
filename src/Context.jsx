@@ -43,4 +43,4 @@ const Provider = ({ children }) => {
   );
 };
 
-export { Store, Reducer, CountUp, pushOrSpliceSelectedItemsArray, Provider };
+export { Store, Reducer, Provider, CountUp, pushOrSpliceSelectedItemsArray };
