@@ -17,43 +17,41 @@ const DispatchComp = (props) => {
   const { state, dispatch } = useContext(Store);
 
   const handleCheckboxChange = (event, value, id) => {
-    dispatch(
-        {
-            type: 'toggleCheckbox',
-            checked: event.target.checked,
-            itemValue: value,
-            itemId: id,
-        }
-    );
+    dispatch({
+      type: "toggleCheckbox",
+      checked: event.target.checked,
+      itemValue: value,
+      itemId: id,
+    });
   };
 
   const checkboxItems = [1, 2, 3, 4, 5, 6];
 
   const checkboxes = (items) => {
-    return (
-      items.map(item =>
-          <Fragment key={item.id}>
-              <Grid item xs={3}>
-                  <Typography variant="subtitle1">checkbox item #{item}</Typography>
-              </Grid>
-              <Grid item xs={3}>
-                  <FormGroup>
-                      <FormControlLabel
-                          labelPlacement="start"
-                          sx={{ flexGrow: 1 }}
-                          control={
-                              <Checkbox
-                                  id={`${item}`}
-                                  defaultChecked={item.selected}
-                                  onChange={(e) => handleCheckboxChange(e, item, item)} />
-                          }
-                          label={item}
-                      />
-                  </FormGroup>
-              </Grid>
-          </Fragment>
-      ))
-  }
+    return items.map((item) => (
+      <Fragment key={item.id}>
+        <Grid item xs={3}>
+          <Typography variant="subtitle1">checkbox item #{item}</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <FormGroup>
+            <FormControlLabel
+              labelPlacement="start"
+              sx={{ flexGrow: 1 }}
+              control={
+                <Checkbox
+                  id={`${item}`}
+                  defaultChecked={item.selected}
+                  onChange={(e) => handleCheckboxChange(e, item, item)}
+                />
+              }
+              label={item}
+            />
+          </FormGroup>
+        </Grid>
+      </Fragment>
+    ));
+  };
 
   return (
     <Box bgcolor="orange" px={2} py={2}>
@@ -78,9 +76,7 @@ const DispatchComp = (props) => {
         Dispatch count is {state.count}
       </Typography>
 
-      <Grid container>
-        {checkboxes(checkboxItems)}
-      </Grid>
+      <Grid container>{checkboxes(checkboxItems)}</Grid>
       <Typography variant="h6" component="div">
         Checkbox array is {JSON.stringify(state.selectedItems)}
       </Typography>

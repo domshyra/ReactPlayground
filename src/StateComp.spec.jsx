@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
 
-import {fireEvent, render, screen, waitFor} from '@testing-library/react'
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import React from "react";
 import StateComp from "./StateComp";
@@ -8,7 +8,6 @@ import StateComp from "./StateComp";
 beforeAll(() => {
   console.log("Now Testing The State Component");
 });
-
 
 test.skip("The State Component", () => {
   expect(undefined).toBe();
@@ -30,7 +29,6 @@ test("App state gets incremented when user clicks add button", () => {
 
   fireEvent.click(screen.getByTestId("addButton"));
   expect(countText.textContent).toBe("State count is 1");
-
 });
 
 test("App state gets incremented when user clicks add button multiple times", () => {
@@ -41,6 +39,4 @@ test("App state gets incremented when user clicks add button multiple times", ()
     fireEvent.click(screen.getByTestId("addButton"));
     expect(countText.textContent).toBe(`State count is ${index}`);
   }
-
 });
-

@@ -5,10 +5,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
 
 const StateComp = (props) => {
-  //TODO: test this state
   const [count, setCount] = useState(0);
 
-  //TODO: test this method
   const handleChange = () => {
     const newCount = count + 1;
     setCount(newCount);
