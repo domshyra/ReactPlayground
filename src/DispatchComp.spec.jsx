@@ -1,4 +1,4 @@
-import {CountUp, Reducer} from './Context'
+import { CountUp, Reducer } from "./Context";
 
 let initState = {};
 
@@ -6,10 +6,9 @@ beforeAll(() => {
   console.log("Now Testing The Dispatch Component");
 
   initState = {
-    count: 0
-  }
+    count: 0,
+  };
 });
-
 
 test("The Dispatch Component should add when calling CountUp", () => {
   let expected = initState.count + 1;
@@ -21,10 +20,9 @@ test("The Dispatch Component should add when calling CountUp", () => {
 });
 
 test("The Dispatch Component should add when called from reducer", () => {
-
   let expected = initState.count + 1;
 
-  Reducer(initState, {type: "add"});
+  Reducer(initState, { type: "add" });
 
   expect(expected).toBe(initState.count);
 });
