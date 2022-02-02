@@ -13,7 +13,7 @@ const StateComp = (props) => {
   };
 
   return (
-    <Box bgcolor="black" px={2}>
+    <Box bgcolor="black" px={2} py={2}>
       <Typography variant="h4" component="div" gutterBottom>
         State Component
       </Typography>

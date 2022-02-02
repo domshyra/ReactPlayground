@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 
 const initialState = {
   count: 0,
+  selectedItems: []
 };
 
 const Store = React.createContext(initialState);
@@ -10,6 +11,11 @@ function Reducer(state, action) {
   switch (action.type) {
     case "add": {
       CountUp(state);
+      return { ...state };
+    }
+    case "toggleCheckbox": {
+      pushOrSpliceSelectedItemsArray(action.checked, action.itemId, state);
+      debugger;
       return { ...state };
     }
     default:
@@ -23,6 +29,12 @@ function CountUp(state) {
   return newCount;
 }
 
+//Add or remove from our state.selectedItems array
+const pushOrSpliceSelectedItemsArray = (checked, itemId, state) => {
+  checked ? state.selectedItems.push(itemId) : state.selectedItems.splice(state.selectedItems.indexOf(itemId), 1);
+};
+
+
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
@@ -31,4 +43,4 @@ const Provider = ({ children }) => {
   );
 };
 
-export { Store, Reducer, CountUp, Provider };
+export { Store, Reducer, CountUp, pushOrSpliceSelectedItemsArray, Provider };
