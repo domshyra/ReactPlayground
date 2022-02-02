@@ -11,18 +11,11 @@ beforeAll(() => {
 });
 
 test("The Dispatch Component should add when calling CountUp", () => {
-  let expected = initState.count + 1;
+    //TODO
 
-  let result = CountUp(initState);
-
-  expect(expected).toBe(initState.count);
-  expect(expected).toBe(result);
 });
 
 test("The Dispatch Component should add when called from reducer", () => {
-  let expected = initState.count + 1;
+    //TODO
 
-  Reducer(initState, { type: "add" });
-
-  expect(expected).toBe(initState.count);
 });
