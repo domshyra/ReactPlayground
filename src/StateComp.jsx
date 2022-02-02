@@ -5,15 +5,17 @@ import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
 
 const StateComp = (props) => {
+  //TODO: test this state
   const [count, setCount] = useState(0);
 
+  //TODO: test this method
   const handleChange = () => {
     const newCount = count + 1;
     setCount(newCount);
   };
 
   return (
-    <Box bgcolor="black" px={2}>
+    <Box bgcolor="black" px={2} py={2}>
       <Typography variant="h4" component="div" gutterBottom>
         State Component
       </Typography>
@@ -23,11 +25,12 @@ const StateComp = (props) => {
           color="primary"
           variant="text"
           startIcon={<AddIcon />}
+          data-testid="addButton"
         >
           1
         </Button>
       </Box>
-      <Typography variant="h6" component="div">
+      <Typography variant="h6" component="div" data-testid="countText">
         State count is {count}
       </Typography>
     </Box>
