@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You will need to instal jest *gloablly* in order to test this application `npm install jest --global`. 
 
+This project is created as a jumping off point to talk about testing in React. Both state by `useState` and then some dispatch code by using `useReducer` and `useContext`.
+
 ## Available Scripts
 
 In the project directory, you can run:
