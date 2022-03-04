@@ -13,17 +13,19 @@ import React, { Fragment } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 const ReduxComp = (props) => {
 
   const handleCheckboxChange = (event, value, id) => {
-    props.actions.toggleSelectedItems(event.target.checked, value,id);
+    props.toggleActions.toggleSelectedItems(event.target.checked, value,id);
   };
 
   const checkboxItems = [1, 2, 3, 4, 5, 6];
 
   const checkboxes = (items) => {
+    debugger;
     return items.map((item) => (
       <Fragment key={item.id}>
         <Grid item xs={3}>
@@ -37,7 +39,7 @@ const ReduxComp = (props) => {
               control={
                 <Checkbox
                   id={`${item}`}
-                  defaultChecked={item.selected}
+                  defaultChecked={item.selected || props.selectedItems.includes(item.id)}
                   onChange={(e) => handleCheckboxChange(e, item, item)}
                 />
               }
@@ -85,13 +87,20 @@ ReduxComp.propTypes = {
 };
 
 function mapStateToProps(state) {
+  debugger;
 	return {
 		selectedItems: state.selectedItems,
 	};
 }
 
-const mapDispatchToProps = {
-  toggleSelectedItems: selectedItemsActions.toggleSelectedItems
+function mapDispatchToProps(dispatch) {
+	return {
+		toggleActions: bindActionCreators(selectedItemsActions, dispatch),
+	};
 }
+
+// const mapDispatchToProps = {
+//   toggleSelectedItems: selectedItemsActions.toggleSelectedItems
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReduxComp);
