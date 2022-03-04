@@ -24,6 +24,7 @@ function Reducer(state, action) {
 }
 
 function CountUp(state) {
+  debugger;
   let newCount = state.count + 1;
   state.count = newCount;
   return newCount;
