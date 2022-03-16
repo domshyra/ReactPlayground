@@ -7,6 +7,8 @@ export default function countReducer(state, action) {
     switch (action.type) {
         case types.ADD:
             return state + 1;
+        case types.SUBTRACT:
+                return state - 1;
         default:
             return state;
     }

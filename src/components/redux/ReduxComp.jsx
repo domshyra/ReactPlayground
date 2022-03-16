@@ -14,6 +14,7 @@ import React, { Fragment } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -60,11 +61,21 @@ const ReduxComp = (props) => {
       <Box>
         <Button
           onClick={() =>
-            props.countActions.countUp()
+            props.countUp()
           }
           color="primary"
           variant="text"
           startIcon={<AddIcon />}
+        >
+          1
+        </Button>
+        <Button
+          onClick={() =>
+            props.countDown()
+          }
+          color="primary"
+          variant="text"
+          startIcon={<RemoveIcon />}
         >
           1
         </Button>
@@ -99,7 +110,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		toggleActions: bindActionCreators(selectedItemsActions, dispatch),
-		countActions: bindActionCreators(countActions, dispatch),
+		countDown: bindActionCreators(countActions.countDown, dispatch),
+		countUp: bindActionCreators(countActions.countUp, dispatch),
 	};
 }
 
