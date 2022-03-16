@@ -25,9 +25,8 @@ const ReduxComp = (props) => {
   const checkboxItems = [1, 2, 3, 4, 5, 6];
 
   const checkboxes = (items) => {
-    debugger;
     return items.map((item) => (
-      <Fragment key={item.id}>
+      <Fragment key={item}>
         <Grid item xs={3}>
           <Typography variant="subtitle1">checkbox item #{item}</Typography>
         </Grid>
@@ -39,8 +38,9 @@ const ReduxComp = (props) => {
               control={
                 <Checkbox
                   id={`${item}`}
-                  defaultChecked={item.selected || props.selectedItems.includes(item.id)}
+                  defaultChecked={false}
                   onChange={(e) => handleCheckboxChange(e, item, item)}
+                  value={props.selectedItems.includes(item)}
                 />
               }
               label={item}
@@ -52,7 +52,7 @@ const ReduxComp = (props) => {
   };
 
   return (
-    <Box bgcolor="orange" px={2} py={2}>
+    <Box bgcolor="purple" px={2} py={2}>
       <Typography variant="h4" component="div" gutterBottom>
         Redux Component
       </Typography>
@@ -83,11 +83,10 @@ const ReduxComp = (props) => {
 ReduxComp.propTypes = {
   title: PropTypes.string,
 	selectedItems: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  toggleActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-  debugger;
 	return {
 		selectedItems: state.selectedItems,
 	};
