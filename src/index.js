@@ -8,7 +8,8 @@ import configureStore from "./redux/configureStore";
 import reportWebVitals from "./reportWebVitals";
 
 //can pass in a hydrated store from server here or from local storage.
-const store = configureStore();
+
+const store = configureStore({ count: 0, selectedItems: [] });
 
 ReactDOM.render(
 	<ReduxProvider store={store}>

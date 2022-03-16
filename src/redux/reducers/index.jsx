@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import math from './mathReducer'
+import count from './countReducer'
 import selectedItems from './selectedItemsReducer'
 
 const rootReducer = combineReducers({
-    math,
+    count,
     selectedItems
 })
 

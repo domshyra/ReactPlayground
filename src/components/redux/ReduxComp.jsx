@@ -1,3 +1,4 @@
+import * as countActions from "../../redux/actions/countActions"
 import * as selectedItemsActions from "../../redux/actions/selectedItemsActions"
 
 import {
@@ -59,7 +60,7 @@ const ReduxComp = (props) => {
       <Box>
         <Button
           onClick={() =>
-            props.actions.Add()
+            props.countActions.countUp()
           }
           color="primary"
           variant="text"
@@ -68,9 +69,9 @@ const ReduxComp = (props) => {
           1
         </Button>
       </Box>
-      {/* <Typography variant="h6" component="div">
-        Redux count is {props.state.count}
-      </Typography> */}
+      <Typography variant="h6" component="div">
+        Redux count is {props.count}
+      </Typography>
 
       <Grid container>{checkboxes(checkboxItems)}</Grid>
       <Typography variant="h6" component="div">
@@ -83,18 +84,22 @@ const ReduxComp = (props) => {
 ReduxComp.propTypes = {
   title: PropTypes.string,
 	selectedItems: PropTypes.array.isRequired,
-  toggleActions: PropTypes.object.isRequired
+  toggleActions: PropTypes.object.isRequired,
+  count: PropTypes.number
 };
 
 function mapStateToProps(state) {
+  debugger;
 	return {
 		selectedItems: state.selectedItems,
+    count: state.count
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		toggleActions: bindActionCreators(selectedItemsActions, dispatch),
+		countActions: bindActionCreators(countActions, dispatch),
 	};
 }
 
