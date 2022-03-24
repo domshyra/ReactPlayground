@@ -100,7 +100,6 @@ ReduxComp.propTypes = {
 };
 
 function mapStateToProps(state) {
-  debugger;
 	return {
 		selectedItems: state.selectedItems,
     count: state.count

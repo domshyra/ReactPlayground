@@ -12,11 +12,11 @@ import reportWebVitals from "./reportWebVitals";
 const store = configureStore({ count: 0, selectedItems: [] });
 
 ReactDOM.render(
-	<ReduxProvider store={store}>
-		<React.StrictMode>
+	<React.StrictMode>
+		<ReduxProvider store={store}>
 			<App />
-		</React.StrictMode>
-	</ReduxProvider>,
+		</ReduxProvider>
+	</React.StrictMode>,
 	document.getElementById("root")
 );
 
