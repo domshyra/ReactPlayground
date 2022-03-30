@@ -14,6 +14,7 @@ import React, { Fragment } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import { PropTypes } from "prop-types";
+import ReduxForm from "./ReduxForm";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -90,6 +91,9 @@ const ReduxComp = (props) => {
       <Typography variant="h6" component="div">
         Checkbox array is {JSON.stringify(props.selectedItems)}
       </Typography>
+
+
+      <ReduxForm />
     </Box>
   );
 };
