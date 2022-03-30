@@ -21,6 +21,7 @@ import { connect } from "react-redux";
 const ReduxComp = (props) => {
 
   const handleCheckboxChange = (event, value, id) => {
+    //here we must call toggleActions.ActionName to get the right action
     props.toggleActions.toggleSelectedItems(event.target.checked, value,id);
   };
 
@@ -61,6 +62,7 @@ const ReduxComp = (props) => {
       <Box>
         <Button
           onClick={() =>
+            //Here we can call our function directly since we mapped it that way 
             props.countUp()
           }
           color="primary"
@@ -96,9 +98,10 @@ ReduxComp.propTypes = {
   title: PropTypes.string,
 	selectedItems: PropTypes.array.isRequired,
   toggleActions: PropTypes.object.isRequired,
-  count: PropTypes.number
+  count: PropTypes.number.isRequired
 };
 
+//Similarly to what we see in the reducer/Index.jsx
 function mapStateToProps(state) {
 	return {
 		selectedItems: state.selectedItems,
@@ -108,12 +111,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
+    //This syntax is used for all of the actions
 		toggleActions: bindActionCreators(selectedItemsActions, dispatch),
+    //These are functions mapped to specific actions
 		countDown: bindActionCreators(countActions.countDown, dispatch),
 		countUp: bindActionCreators(countActions.countUp, dispatch),
+    //can also do this and map to specific actions in an obj
+    // count: {
+    //   up: bindActionCreators(countActions.countUp, dispatch),
+    //   down: bindActionCreators(countActions.countDown, dispatch),
+    // }
 	};
 }
 
+//This is another way of mapping dispatch to props
 // const mapDispatchToProps = {
 //   toggleSelectedItems: selectedItemsActions.toggleSelectedItems
 // }

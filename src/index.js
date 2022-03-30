@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 
 //can pass in a hydrated store from server here or from local storage.
 
-const store = configureStore({ count: 0, selectedItems: [] });
+const store = configureStore();
 
 ReactDOM.render(
 	<React.StrictMode>
