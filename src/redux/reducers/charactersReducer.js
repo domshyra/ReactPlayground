@@ -31,7 +31,7 @@ export default function characterReducer(state = initialState.characters, action
 	}
 }
 
-const getCharacters = async () => {
+export const getCharacters = async () => {
     const response = await fetch('https://rickandmortyapi.com/api/character');
     const json = await response.json();
     return (json.results);

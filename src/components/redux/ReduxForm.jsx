@@ -4,32 +4,33 @@ import React, { useEffect, useState } from "react";
 import { PropTypes } from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { loadCharacters } from "../../redux/actions/charactersActions";
+import { getCharacters } from "../../redux/reducers/charactersReducer";
 
-export const ReduxForm = ({ characters, loadCharacters }) => {
-	const [items, setItems] = useState(characters);
+export const ReduxForm = ({}) => {
+	const [characters, setCharacters] = useState([]);
+	const [items, setItems] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 
     debugger;
 	useEffect(() => {
 		if (!loaded) {
-			loadCharacters();
+			getCharacters().then(charactersReulsts => { 
+                setItems(charactersReulsts.map((character) => (
+                        <TableRow key={character.id}>
+                            <TableCell>{character.name}</TableCell>
+                            <TableCell>{character.status}</TableCell>
+                            <TableCell>{character.gender}</TableCell>
+                            <TableCell>{character.species}</TableCell>
+                        </TableRow>
+                    )));
+                setCharacters(characters);
+                });
 			setLoaded(true);
 		}
-		setItems(
-			characters.map((character) => (
-				<TableRow key={character.id}>
-					<TableCell>{character.name}</TableCell>
-					<TableCell>{character.status}</TableCell>
-					<TableCell>{character.gender}</TableCell>
-					<TableCell>{character.species}</TableCell>
-				</TableRow>
-			))
-		);
 		return () => {
 			console.log(characters);
 		};
-	}, [characters, loaded]);
+	}, [loaded]);
 
 	return (
 		<TableContainer component={Paper}>
@@ -49,15 +50,14 @@ export const ReduxForm = ({ characters, loadCharacters }) => {
 };
 
 ReduxForm.propTypes = {
-	characters: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-	characters: state.characters,
+	// characters: state.characters,
 });
 function mapDispatchToProps(dispatch) {
 	return {
-		loadCharacters: bindActionCreators(loadCharacters, dispatch),
+		// loadCharacters: bindActionCreators(loadCharacters, dispatch),
 	};
 }
 // const mapDispatchToProps = {

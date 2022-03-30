@@ -93,7 +93,8 @@ const ReduxComp = (props) => {
       </Typography>
 
 
-      <ReduxForm />
+      {/* <ReduxForm /> */}
+      {/* <WhyYouNeedMiddlewareForAsyncRedux /> */}
     </Box>
   );
 };
