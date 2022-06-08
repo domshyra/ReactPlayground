@@ -9,7 +9,6 @@ export default function characterReducer(state = initialState.characters, action
 	if (characters.length === 0){
 		getCharacters()
 		.then(results => {
-			debugger
 			characters = results.map(character => (
 				{
 					id: character.id,
