@@ -41,7 +41,7 @@ const ReduxComp = (props) => {
               sx={{ flexGrow: 1 }}
               control={
                 <Checkbox
-                  id={`${item}`}
+                  id={`checkbox-item-${item}`}
                   defaultChecked={false}
                   onChange={(e) => handleCheckboxChange(e, item, item)}
                   value={props.selectedItems.includes(item)}
@@ -66,6 +66,7 @@ const ReduxComp = (props) => {
             //Here we can call our function directly since we mapped it that way 
             props.countUp()
           }
+          id={'count-up-btn'}
           color="primary"
           variant="text"
           startIcon={<AddIcon />}
@@ -76,6 +77,7 @@ const ReduxComp = (props) => {
           onClick={() =>
             props.countDown()
           }
+          id={'count-down-btn'}
           color="primary"
           variant="text"
           startIcon={<RemoveIcon />}
@@ -83,12 +85,12 @@ const ReduxComp = (props) => {
           1
         </Button>
       </Box>
-      <Typography variant="h6" component="div">
+      <Typography variant="h6" component="div" id="count-text">
         Redux count is {props.count}
       </Typography>
 
       <Grid container>{checkboxes(checkboxItems)}</Grid>
-      <Typography variant="h6" component="div">
+      <Typography variant="h6" component="div" id="checkbox-array">
         Checkbox array is {JSON.stringify(props.selectedItems)}
       </Typography>
 
