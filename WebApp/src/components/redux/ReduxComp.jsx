@@ -80,7 +80,7 @@ const ReduxComp = (props) => {
           id={'count-down-btn'}
           color="primary"
           variant="text"
-          startIcon={<RemoveIcon />}
+          startIcon={<RemoveIcon />} 
         >
           1
         </Button>

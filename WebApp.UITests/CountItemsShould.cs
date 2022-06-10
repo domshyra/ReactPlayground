@@ -4,6 +4,12 @@ using Xunit;
 
 namespace WebApp.UITests
 {
+
+    public class TestAllBrowsers
+    {
+
+    }
+
     /// <summary>
     /// Used to test checboxItems
     /// </summary>
@@ -28,7 +34,7 @@ namespace WebApp.UITests
             Assert.Equal(_appUrl, chromeDriver.Url);
         }
 
-        //TODO: test by data-testid=Add
+        //TODO: test by data-testid=Add  //*[@id="count-down-btn"]/span[1]/svg
 
         [Theory]
         [InlineData(1)]
