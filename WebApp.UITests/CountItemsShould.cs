@@ -1,40 +1,55 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
+using WebApp.UITests.DriverFixtures;
+using WebApp.UITests.PageObjectModels;
 using Xunit;
 
 namespace WebApp.UITests
 {
-
-    public class TestAllBrowsers
-    {
-
-    }
-
     /// <summary>
     /// Used to test checboxItems
     /// </summary>
     /// <remarks>Make sure the front end webpack server is running</remarks>
-    public class CountItemsShould
+    public class CountItemsShould : IClassFixture<ChromeDriverFixture>
     {
         private const string _appTitle = "React App";
         private const string _appUrl = "http://localhost:3000/";
+        private readonly IWebDriver _driver;
+
+        //public CountItemsShould(IWebDriver webDriver)
+        //{
+        //    _driver = webDriver;
+        //    _driver.Manage().Cookies.DeleteAllCookies();
+        //    _driver.Navigate().GoToUrl("about:blank");
+        //}
+
+        public CountItemsShould(ChromeDriverFixture chromeDriverFixture)
+        {
+            _driver = chromeDriverFixture.Driver;
+            _driver.Manage().Cookies.DeleteAllCookies();
+            _driver.Navigate().GoToUrl("about:blank");
+        }
+        //public CountItemsShould(FireFoxDriverFixture fireFoxDriverFixture)
+        //{
+        //    _driver = fireFoxDriverFixture.Driver;
+        //    _driver.Manage().Cookies.DeleteAllCookies();
+        //    _driver.Navigate().GoToUrl("about:blank");
+        //}
 
         [Fact]
         [Trait("Category", "Smoke")]
         public void LoadApplicationPage()
         {
             //Act
-            using IWebDriver chromeDriver = new ChromeDriver();
 
             //Arrange
-            chromeDriver.Navigate().GoToUrl(_appUrl);
+            _driver.Navigate().GoToUrl(_appUrl);
 
             //Assert
-            Assert.Equal(_appTitle, chromeDriver.Title);
-            Assert.Equal(_appUrl, chromeDriver.Url);
+            Assert.Equal(_appTitle, _driver.Title);
+            Assert.Equal(_appUrl, _driver.Url);
         }
-
-        //TODO: test by data-testid=Add  //*[@id="count-down-btn"]/span[1]/svg
 
         [Theory]
         [InlineData(1)]
@@ -44,21 +59,15 @@ namespace WebApp.UITests
         public void AddWhenAddButtonIsPressed(int n)
         {
             //Act
-            using IWebDriver chromeDriver = new ChromeDriver();
-
             string expectedText = $"Redux count is {n}";
+            HomePage? homepage = new(_driver);
+            homepage.NavigateTo();
 
             //Arrange
-            chromeDriver.Navigate().GoToUrl(_appUrl);
-            IWebElement addButton = chromeDriver.FindElement(By.Id("count-up-btn"));
-            IWebElement countText = chromeDriver.FindElement(By.Id("count-text"));
-            for (int i = 0; i < n; i++)
-            {
-                addButton.Click();
-            }
+            homepage.ClickAddButton(n);
 
             //Assert
-            Assert.Equal(expectedText, countText.Text);
+            Assert.Equal(expectedText, homepage.CountText.Text);
         }
         
         [Theory]
@@ -69,21 +78,16 @@ namespace WebApp.UITests
         public void MinusWhenMinusButtonIsPressed(int n)
         {
             //Act
-            using IWebDriver chromeDriver = new ChromeDriver();
-
             string expectedText = $"Redux count is -{n}";
+            HomePage? homepage = new(_driver);
+            homepage.NavigateTo();
 
             //Arrange
-            chromeDriver.Navigate().GoToUrl(_appUrl);
-            IWebElement minusButton = chromeDriver.FindElement(By.Id("count-down-btn"));
-            IWebElement countText = chromeDriver.FindElement(By.Id("count-text"));
-            for (int i = 0; i < n; i++)
-            {
-                minusButton.Click();
-            }
+            homepage.ClickMinusButton(n);
+            
 
             //Assert
-            Assert.Equal(expectedText, countText.Text);
+            Assert.Equal(expectedText, homepage.CountText.Text);
         }
 
 
@@ -92,20 +96,16 @@ namespace WebApp.UITests
         public void RemainZeroWhenBothButtonsPressed()
         {
             //Act
-            using IWebDriver chromeDriver = new ChromeDriver();
-
             string expectedText = "Redux count is 0";
+            HomePage? homepage = new(_driver);
+            homepage.NavigateTo();
 
             //Arrange
-            chromeDriver.Navigate().GoToUrl(_appUrl);
-            IWebElement addButton = chromeDriver.FindElement(By.Id("count-up-btn"));
-            IWebElement minusButton = chromeDriver.FindElement(By.Id("count-down-btn"));
-            IWebElement countText = chromeDriver.FindElement(By.Id("count-text"));
-            addButton.Click();
-            minusButton.Click();
+            homepage.ClickAddButton(1);
+            homepage.ClickMinusButton(1);
 
             //Assert
-            Assert.Equal(expectedText, countText.Text);
+            Assert.Equal(expectedText, homepage.CountText.Text);
         }
     }
 }
