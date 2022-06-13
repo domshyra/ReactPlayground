@@ -11,7 +11,7 @@ namespace WebApp.UITests
     /// Used to test checboxItems
     /// </summary>
     /// <remarks>Make sure the front end webpack server is running</remarks>
-    public class CountItemsShould : IClassFixture<ChromeDriverFixture>
+    public class CountItemsShould : IClassFixture<FireFoxDriverFixture>
     {
         private const string _appTitle = "React App";
         private const string _appUrl = "http://localhost:3000/";
@@ -24,18 +24,18 @@ namespace WebApp.UITests
         //    _driver.Navigate().GoToUrl("about:blank");
         //}
 
-        public CountItemsShould(ChromeDriverFixture chromeDriverFixture)
-        {
-            _driver = chromeDriverFixture.Driver;
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().GoToUrl("about:blank");
-        }
-        //public CountItemsShould(FireFoxDriverFixture fireFoxDriverFixture)
+        //public CountItemsShould(ChromeDriverFixture chromeDriverFixture)
         //{
-        //    _driver = fireFoxDriverFixture.Driver;
+        //    _driver = chromeDriverFixture.Driver;
         //    _driver.Manage().Cookies.DeleteAllCookies();
         //    _driver.Navigate().GoToUrl("about:blank");
         //}
+        public CountItemsShould(FireFoxDriverFixture fireFoxDriverFixture)
+        {
+            _driver = fireFoxDriverFixture.Driver;
+            _driver.Manage().Cookies.DeleteAllCookies();
+            _driver.Navigate().GoToUrl("about:blank");
+        }
 
         [Fact]
         [Trait("Category", "Smoke")]
