@@ -32,6 +32,7 @@ namespace WebApp.UITests
         //}
         public CountItemsShould(FireFoxDriverFixture fireFoxDriverFixture)
         {
+            //Right now this is using one web driver for every test, but it's not the best practice. This is just a demo app.
             _driver = fireFoxDriverFixture.Driver;
             _driver.Manage().Cookies.DeleteAllCookies();
             _driver.Navigate().GoToUrl("about:blank");
